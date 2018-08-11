@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct LayerName
-{
-	public const string Ecliptic = "Ecliptic";
-}
+
 
 public class GameManager : MonoBehaviour {
 	public List<GravityObject> gravityObjectList;
@@ -71,7 +68,12 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		Simulation(Time.deltaTime* timescale);
 
+		if(Input.GetMouseButtonDown(0))
+		{
+			Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), 9999999, LayerMask.GetMask("Planet"));
 
-		//Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),9999999,
+		}
+
+		Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), 9999999, LayerMask.GetMask("Ecliptic"));
 	}
 }
